@@ -1,21 +1,27 @@
+import { useState, useEffect } from 'react'
 import { Link } from 'wouter'
 
 import FormButton from '../components/FormButton'
-import recreateDB from '../services/recreateDB'
+import getCount from '../services/getCount'
 
 export default function Landing () {
-  async function handleClick () {
-    const ok = window.confirm('¿Estás seguro de finalizar el torneo? Se eliminará toda la información.').valueOf()
-    if (ok) {
-      await recreateDB()
-      console.log('Deleted')
-    }
-  }
+  const [count, setCount] = useState(0)
+  const [isLoading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const data = getCount()
+
+    data.then(res => {
+      setCount(res)
+      setLoading(false)
+    })
+  }, [])
+
+  if (isLoading) return <h2>Cargando ...</h2>
 
   return (
     <>
-      <Link to='/new/kow'><FormButton>Nuevo torneo de kow</FormButton></Link>
-      <FormButton onClick={handleClick}>Finalizar torneo</FormButton>
+      <Link to={(count !== 0 ? '/dashboard/kow' : '/new/kow')}><FormButton>Nuevo torneo de kow</FormButton></Link>
     </>
   )
 }
