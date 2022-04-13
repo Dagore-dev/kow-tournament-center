@@ -3,7 +3,7 @@ import {
   Route,
   Link
 } from 'wouter'
-import KowDashboard from './Views/KowDashBoard'
+import KowDashboard from './Views/KowDashboard'
 import Landing from './Views/Landing'
 import NewKowTournament from './Views/NewKowTournament'
 
