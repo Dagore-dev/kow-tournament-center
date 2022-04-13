@@ -1,21 +1,10 @@
-import { useState, useEffect } from 'react'
 import { Link } from 'wouter'
 
 import FormButton from '../components/FormButton'
-import getCount from '../services/getCount'
+import useCount from '../hooks/useCount'
 
 export default function Landing () {
-  const [count, setCount] = useState(0)
-  const [isLoading, setLoading] = useState(true)
-
-  useEffect(() => {
-    const data = getCount()
-
-    data.then(res => {
-      setCount(res)
-      setLoading(false)
-    })
-  }, [])
+  const [isLoading, count] = useCount()
 
   if (isLoading) return <h2>Cargando ...</h2>
 
