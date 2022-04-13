@@ -1,11 +1,14 @@
 import { useRef, useState } from 'react'
+import { useLocation } from 'wouter'
 
 import PreviewPlayers from './PreviewPlayers'
 import FormButton from './FormButton'
+import insertPlayers from '../services/insertPlayers'
 
 export default function PlayersForm () {
   const playerName = useRef()
   const [players, setPlayers] = useState([])
+  const [, setLocation] = useLocation()
 
   function handleClick (e) {
     e.preventDefault()
@@ -17,9 +20,12 @@ export default function PlayersForm () {
     }
   }
 
-  function handleSubmit (e) {
+  async function handleSubmit (e) {
     e.preventDefault()
-    console.log(players)
+
+    insertPlayers(players)
+      .then(setLocation('/dashboard/kow'))
+      .catch(console.error)
   }
 
   return (
