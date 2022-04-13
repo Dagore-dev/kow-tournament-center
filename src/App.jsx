@@ -3,9 +3,10 @@ import {
   Route,
   Link
 } from 'wouter'
-import KowDashboard from './Views/KowDashboard'
 import Landing from './Views/Landing'
+import KowDashboard from './Views/KowDashboard'
 import NewKowTournament from './Views/NewKowTournament'
+import KowNewRound from './Views/KowNewRound'
 
 function App () {
   return (
@@ -15,6 +16,7 @@ function App () {
       <main className='m-4'>
         <Router>
           <Route path='/new/kow' component={NewKowTournament} />
+          <Route path='/newRound/kow' component={KowNewRound} />
           <Route path='/dashboard/kow' component={KowDashboard} />
           <Route path='/' component={Landing} />
         </Router>
