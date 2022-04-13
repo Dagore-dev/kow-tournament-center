@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 
-import getPlayers from '../services/getplayers'
 import PlayersInfo from '../components/PlayersInfo'
+import getPlayers from '../services/getplayers'
 
-export default function KowDashboard () {
+export default function KowDashborad () {
   const [players, setPlayers] = useState([])
   const [isLoading, setLoading] = useState(true)
 

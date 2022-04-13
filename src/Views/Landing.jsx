@@ -1,13 +1,13 @@
-import Dexie from 'dexie'
 import { Link } from 'wouter'
 
 import FormButton from '../components/FormButton'
+import recreateDB from '../services/recreateDB'
 
 export default function Landing () {
   async function handleClick () {
-    const ok = confirm('¿Estás seguro de finalizar el torneo? Se eliminará toda la información.').valueOf()
+    const ok = window.confirm('¿Estás seguro de finalizar el torneo? Se eliminará toda la información.').valueOf()
     if (ok) {
-      await Dexie.delete('tournament')
+      await recreateDB()
       console.log('Deleted')
     }
   }
